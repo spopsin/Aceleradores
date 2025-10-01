@@ -1,3 +1,4 @@
+// Code your design here
 module ha(a, b, s, cout);
     input a, b; 
     output s, cout;
@@ -22,69 +23,73 @@ endmodule
 module rca_Nbits (A, B, S, Cout);
     parameter N = 16;
 
-    input [N-1:0] A, B;
-    output [N-1:0] S;
+    input signed [N-1:0] A, B;
+    output signed [N-1:0] S;
     output Cout;
 
-    wire  [N-1:0] w_cout;
+//     wire  [N-1:0] w_cout;
 
-    // HA
-    ha ha_0 (
-        .a(A[0]),
-        .b(B[0]),
-        .s(S[0]),
-        .cout(w_cout[0])
-    );
+//     // HA
+//     ha ha_0 (
+//         .a(A[0]),
+//         .b(B[0]),
+//         .s(S[0]),
+//         .cout(w_cout[0])
+//     );
 
-    // FA
-    generate
-        genvar i;
-        for (i = 1; i < N; i = i + 1)
-            begin
-                fa fa_i (
-                    .a(A[i]),
-                    .b(B[i]),
-                    .cin(w_cout[i-1]),
-                    .s(S[i]),
-                    .cout(w_cout[i])
-                );
-            end
-    endgenerate
+//     // FA
+//     generate
+//         genvar i;
+//         for (i = 1; i < N; i = i + 1)
+//             begin
+//                 fa fa_i (
+//                     .a(A[i]),
+//                     .b(B[i]),
+//                     .cin(w_cout[i-1]),
+//                     .s(S[i]),
+//                     .cout(w_cout[i])
+//                 );
+//             end
+//     endgenerate
     
-    assign Cout = w_cout[N-1];
+//     assign Cout = w_cout[N-1];
+  assign S = A + B;
+  
 endmodule
 
 module m_mult (W, X, Out);
     parameter N = 18;
 
-    input [N-1:0] W, X;
-    output [(2*N)-1:0] Out;
+    input signed [N-1:0] W, X;
+    output signed [(2*N)-1:0] Out;
 
-    reg [(2*N)-1:0] P;
-    wire [(2*N)-1:0] PP [N-1:0];
-    wire [(2*N)-1:0] P_next;
-    integer i;
+//     reg [(2*N)-1:0] P;
+//     wire [(2*N)-1:0] PP [N-1:0];
+//     wire [(2*N)-1:0] P_next;
+//     integer i;
 
-    // Partial Products
-    generate
-        genvar j;
-        for (j = 0; j < N; j = j + 1)
-            begin
-                assign PP[j] = X[j] ? (W << j) : 0;
-            end
-    endgenerate
+//     // Partial Products
+//     generate
+//         genvar j;
+//         for (j = 0; j < N; j = j + 1)
+//             begin
+//                 assign PP[j] = X[j] ? (W << j) : 0;
+//             end
+//     endgenerate
 
-    assign P_next = P + PP[0]; // Simplified for illustration; actual implementation may vary
+//     assign P_next = P + PP[0]; // Simplified for illustration; actual implementation may vary
 
-    assign Out = P;
+//     assign Out = P;
+  assign Out = W * X;
+  
 endmodule
 
-module mac_Nbits (W, X, Rst, clk, En, Out);
+module mac_Nbits (W, X, rst, clk, en, Out);
     parameter N = 18;
 
-    input [N-1:0] W, X;
-    input Rst, clk, En;
-    output [(2*N)-1:0] Out;
+    input signed [N-1:0] W, X;
+    input rst, clk, en;
+    output signed [(2*N)-1:0] Out;
 
     wire [(2*N)-1:0] out_mult, out_add;
 
@@ -103,10 +108,10 @@ module mac_Nbits (W, X, Rst, clk, En, Out);
         .Cout()
     );
 
-    always @(posedge clk or posedge Rst) begin
-        if (Rst) begin
+  always @(posedge clk or posedge rst) begin
+    if (!rst) begin
             AC <= 0;
-        end else if (En) begin
+    end else if (en) begin
             AC <= out_add;
         end
     end

@@ -1,5 +1,7 @@
 // Code your testbench here
 // or browse Examples
+// Code your testbench here
+// or browse Examples
 `timescale 1ns / 1ps
 
 module tb_mac_Nbits;
@@ -52,11 +54,12 @@ module tb_mac_Nbits;
     $dumpvars(0, tb_mac_Nbits);
 
     // Inicialização
-    rst = 1;
+    rst = 0;
     en  = 0;
     w   = 0;
     x   = 0;
-    #7 rst = 0;  // libera reset antes do próximo posedge
+    #7 rst = 1;
+  	// libera reset antes do próximo posedge
 
     // Caso 1: acumular por 2 ciclos ---------
     // 1º ciclo: w=-3, x=2
@@ -75,11 +78,11 @@ module tb_mac_Nbits;
     check(-26, "Segundo ciclo");
 
     // Caso 2: Reset ativo durante a operação ---------
-    rst = 1;
+    rst = 0;
     en  = 0;
     #10;
     check(0, "Teste reset");
-    rst = 0;  // libera reset
+    rst = 1;  // libera reset
     en  = 1;
     #5;
     // Realizando uma soma qualquer antes do próximo caso
@@ -93,7 +96,7 @@ module tb_mac_Nbits;
     x = -4;
 
     #40;
-    check(-48, "Teste Enable");
+    check(-68, "Teste Enable");
     #20;
     $finish;
   end
