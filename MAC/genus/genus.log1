@@ -1,0 +1,59 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[13:44:56.196537] Configured Lic search path (23.02-s003): 5280@pgmicro01.ufrgs.br
+
+Version: 23.12-s086_1, built Wed Jul 24 15:05:35 PDT 2024
+Options: 
+Date:    Thu Oct 02 13:44:56 2025
+Host:    cadmicro-el8-04.inf.ufrgs.br (x86_64 w/Linux 4.18.0-553.58.1.el8_10.x86_64) (32cores*64cpus*2physical cpus*QEMU Virtual CPU version 2.5+ 16384KB) (198008264KB)
+PID:     1126236
+OS:      Rocky Linux release 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[13:44:57.012536] Periodic Lic check successful
+[13:44:57.012544] Feature usage summary:
+[13:44:57.012545] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (1 second elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (13 seconds elapsed).
+
+WARNING: This version of the tool is 434 days old.
+@genus:root: 1> source ../scripts/genus_script.tcl
+Sourcing '../scripts/genus_script.tcl' (Thu Oct 02 13:45:27 -03 2025)...
+#@ Begin verbose source ../scripts/genus_script.tcl
+@file(genus_script.tcl) 2: set DESIGN mac_Nbits
+@file(genus_script.tcl) 4: set_db init_hdl_search_path ../rtl
+  Setting attribute of root '/': 'init_hdl_search_path' = ../rtl
+@file(genus_script.tcl) 5: set_db init_lib_search_path ../gpdk045_workspace/gsclib045_all_v4.4/gsclib045/timing
+  Setting attribute of root '/': 'init_lib_search_path' = ../gpdk045_workspace/gsclib045_all_v4.4/gsclib045/timing
+@file(genus_script.tcl) 7: read_libs { slow_vdd1v0_basicCells.lib }
+Error   : File error. [FILE-100] [::legacy::set_attribute]
+        : Cannot open file 'slow_vdd1v0_basicCells.lib'
+        : Make sure that the file is a readable regular file and has the specified name.
+Error   : A library file does not exist. [LBR-68] [::legacy::set_attribute]
+        : File 'slow_vdd1v0_basicCells.lib' could not be found. File '<none>' was the last file that was successfully read in.
+        : Make sure that the library file exists or check for a typo in the file name.
+Error   : The data value for this attribute is invalid. [TUI-24] [::legacy::set_attribute]
+        : The value '  { slow_vdd1v0_basicCells.lib } ' cannot be set for attribute 'library'.
+        : To see the usage/description for this attribute, type '::legacy::set_attribute -h <attr_name> *' (in legacy UI mode) or 'help * <attr_name> -detail' (in CUI mode).
+#@ End verbose source ../scripts/genus_script.tcl
+1
+@genus:root: 2> exit
+
+Lic Summary:
+[13:45:44.245363] Cdslmd servers: pgmicro01
+[13:45:44.769657] Feature usage summary:
+[13:45:44.769657] Genus_Synthesis
+

@@ -1,0 +1,37 @@
+xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s013: Started on Oct 02, 2025 at 09:48:39 -03
+xrun
+	-access +rwc
+	-gui
+	tb/tb_mac.v
+	rtl/mac_Nbits.v
+file: tb/tb_mac.v
+	module worklib.tb_mac_Nbits:v
+		errors: 0, warnings: 0
+file: rtl/mac_Nbits.v
+	module worklib.ha:v
+		errors: 0, warnings: 0
+	module worklib.fa:v
+		errors: 0, warnings: 0
+	module worklib.rca_Nbits:v
+		errors: 0, warnings: 0
+	module worklib.m_mult:v
+		errors: 0, warnings: 0
+	module worklib.mac_Nbits:v
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		tb_mac_Nbits
+		ha
+		fa
+	Building instance overlay tables: ...
+        $error("(%s): esperado = %0d, obtido = %0d (t = %0t)", msg, expected, mac_out, $time);
+             |
+xmelab: *E,NOTSYT (./tb/tb_mac.v,39|13): Unrecognized system task or function (did not match built-in or user-defined names) [2.7.4(IEEE Std 1364-2001)].
+If item was defined in a shared-object library, the problem could be:
+libvpi.so: cannot open shared object file: No such file or directory or file is not valid ELFCLASS64 library.
+libpli.so: cannot open shared object file: No such file or directory or file is not valid ELFCLASS64 library..
+................. Done
+xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 1), exiting.
+TOOL:	xrun(64)	23.09-s013: Exiting on Oct 02, 2025 at 09:48:40 -03  (total: 00:00:01)
