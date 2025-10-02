@@ -107,7 +107,7 @@ module mac_Nbits (W, X, rst, clk, en, Out);
         .Cout()
     );
 
-  always @(posedge clk or posedge rst) begin
+  always @(posedge clk or negedge rst) begin
     if (!rst) begin
             AC <= 0;
     end else if (en) begin
